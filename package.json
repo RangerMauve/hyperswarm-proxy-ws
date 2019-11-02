@@ -1,0 +1,29 @@
+{
+  "name": "hyperswarm-proxy-ws",
+  "version": "1.0.0",
+  "description": "Proxy hyperswarm connections over websockets with auto-reconnect logic",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RangerMauve/hyperswarm-proxy-ws.git"
+  },
+  "keywords": [
+    "hyperswarm",
+    "ws",
+    "websocket",
+    "dat"
+  ],
+  "author": "rangermauve",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/RangerMauve/hyperswarm-proxy-ws/issues"
+  },
+  "homepage": "https://github.com/RangerMauve/hyperswarm-proxy-ws#readme",
+  "dependencies": {
+    "hyperswarm-proxy": "^1.1.0",
+    "websocket-stream": "^5.5.0"
+  }
+}
