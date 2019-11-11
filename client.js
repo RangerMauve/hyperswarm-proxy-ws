@@ -20,13 +20,18 @@ class HyperswarmProxyWSClient extends HyperswarmProxyClient {
 
   reconnect () {
     const localSocket = websocket(LOCAL_PROXY)
+
+    // Re-emit errors
     localSocket.on('error', (e) => this.emit('connection-error', e))
+
     localSocket.once('error', () => {
       // Couldn't connect to a local proxy
       // Attempt to connect to the internet proxy
       const proxySocket = websocket(this.proxy)
 
+      // Re-emit errors
       proxySocket.on('error', (e) => this.emit('connection-error', e))
+
       proxySocket.once('close', () => {
         setTimeout(() => {
           if (this.destroyed) return

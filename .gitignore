@@ -59,3 +59,6 @@ typings/
 
 # next.js build output
 .next
+
+# This isn't an application, so I don't want to track this.
+package-lock.json

@@ -23,6 +23,7 @@ class HyperswarmProxyWSServer extends HyperswarmProxyServer {
   }
 
   destroy (cb) {
+    // Closing the server rather than the websocket server actually closes the handles. 🤯
     this.server.close(() => {
       super.destroy(cb)
     })
