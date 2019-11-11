@@ -23,7 +23,13 @@
   },
   "homepage": "https://github.com/RangerMauve/hyperswarm-proxy-ws#readme",
   "dependencies": {
-    "hyperswarm-proxy": "^1.1.0",
+    "hyperswarm": "^2.2.1",
+    "hyperswarm-proxy": "github:RangerMauve/hyperswarm-proxy#ws-fixes",
+    "leaked-handles": "^5.2.0",
     "websocket-stream": "^5.5.0"
+  },
+  "devDependencies": {
+    "get-port": "^5.0.0",
+    "tape": "^4.11.0"
   }
 }

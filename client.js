@@ -1,8 +1,9 @@
 const HyperswarmProxyClient = require('hyperswarm-proxy/client')
 const websocket = require('websocket-stream')
 
-const DEFAULT_PROXY = 'TODO: set one up'
-const LOCAL_PROXY = 'TODO: decide on local port and stuff'
+const DEFAULT_PORT = '4977' // HYPR on a cellphone keypad
+const LOCAL_PROXY = `ws://localhost:${DEFAULT_PORT}`
+const DEFAULT_PROXY = LOCAL_PROXY
 const DEFAULT_RECONNECT_DELAY = 1000
 
 class HyperswarmProxyWSClient extends HyperswarmProxyClient {
@@ -19,16 +20,18 @@ class HyperswarmProxyWSClient extends HyperswarmProxyClient {
 
   reconnect () {
     const localSocket = websocket(LOCAL_PROXY)
+    localSocket.on('error', (e) => this.emit('connection-error', e))
     localSocket.once('error', () => {
       // Couldn't connect to a local proxy
       // Attempt to connect to the internet proxy
       const proxySocket = websocket(this.proxy)
 
+      proxySocket.on('error', (e) => this.emit('connection-error', e))
       proxySocket.once('close', () => {
-        setTimeout(this.reconnectDelay, () => {
+        setTimeout(() => {
           if (this.destroyed) return
           this.reconnect()
-        })
+        }, this.reconnectDelay)
       })
 
       super.reconnect(proxySocket)
