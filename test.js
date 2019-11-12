@@ -76,7 +76,6 @@ test('discover and make connections', async (t) => {
       connection.once('close', () => {
         cleanup(() => {
           t.end()
-          require("leaked-handles");
         })
       })
       connection.write(TEST_MESSAGE)
