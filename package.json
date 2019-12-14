@@ -1,0 +1,15 @@
+{
+  "name": "hyperswarm-proxy-ws",
+  "version": "1.0.0",
+  "description": "Hyperswarm proxy ws",
+  "main": "hyperswarm-gateway.js",
+  "scripts": {
+    "start": "node hyperswarm-gateway.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "hyperswarm-proxy-ws": "github:rangermauve/hyperswarm-proxy-ws#tests"
+  },
+  "author": "@ninabreznik",
+  "license": "MIT"
+}
