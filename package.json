@@ -1,6 +1,6 @@
 {
   "name": "hyperswarm-proxy-ws",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "description": "Proxy hyperswarm connections over websockets with auto-reconnect logic",
   "main": "index.js",
   "scripts": {
