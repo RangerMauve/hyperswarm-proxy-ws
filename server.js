@@ -18,13 +18,14 @@ class HyperswarmProxyWSServer extends HyperswarmProxyServer {
 
   listen (...args) {
     const server = http.createServer()
-    this.listenOnServer()
+    this.listenOnServer(server)
     server.listen(...args)
   }
 
   destroy (cb) {
-    this.wss.close(() => {
-      super.close(cb)
+    // Closing the server rather than the websocket server actually closes the handles. 🤯
+    this.server.close(() => {
+      super.destroy(cb)
     })
   }
 }
