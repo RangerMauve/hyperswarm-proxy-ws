@@ -65,7 +65,7 @@ test('discover and make connections', async (t) => {
         // Whatever
       })
 
-      if(connectionCount++) return connection.end()
+      if (connectionCount++) return connection.end()
 
       t.deepEqual(info.peer.topic, TEST_TOPIC, 'got connection in client')
       connection.on('data', () => {

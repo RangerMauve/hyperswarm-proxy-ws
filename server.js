@@ -6,7 +6,7 @@ class HyperswarmProxyWSServer extends HyperswarmProxyServer {
   constructor (opts = {}) {
     super(opts)
     const { server } = opts
-    if (server) this.listenOnServer()
+    if (server) this.listenOnServer(server)
   }
 
   listenOnServer (server) {
