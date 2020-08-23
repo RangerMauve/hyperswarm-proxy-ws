@@ -3,7 +3,7 @@ const websocket = require('websocket-stream')
 
 const DEFAULT_PORT = '4977' // HYPR on a cellphone keypad
 const LOCAL_PROXY = `ws://localhost:${DEFAULT_PORT}`
-const DEFAULT_PROXY = LOCAL_PROXY
+const DEFAULT_PROXY = [LOCAL_PROXY]
 const DEFAULT_RECONNECT_DELAY = 1000
 
 class HyperswarmProxyWSClient extends HyperswarmProxyClient {
@@ -12,13 +12,18 @@ class HyperswarmProxyWSClient extends HyperswarmProxyClient {
 
     const { proxy = DEFAULT_PROXY, reconnectDelay = DEFAULT_RECONNECT_DELAY } = opts
 
-    this.proxy = proxy
     this.reconnectDelay = reconnectDelay
+    this.proxy = null
+
+    this._urls = typeof proxy === 'string' ? [proxy] : proxy
+    this._urlIndex = 0
 
     this.reconnect()
   }
 
   reconnect () {
+    this._nextUrl();
+
     const localSocket = websocket(LOCAL_PROXY)
 
     // Re-emit errors
@@ -42,6 +47,11 @@ class HyperswarmProxyWSClient extends HyperswarmProxyClient {
       super.reconnect(proxySocket)
     })
     super.reconnect(localSocket)
+  }
+
+  _nextUrl() {
+    this.proxy = this._urls[this._urlIndex++ % this._urls.length]
+    return this.proxy
   }
 }
 
