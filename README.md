@@ -26,8 +26,8 @@ const HyperswarmClient = require('hyperswarm-proxy-ws/client')
 // Also specify any options for hyperswarm-proxy client
 // https://github.com/RangerMauve/hyperswarm-proxy#client
 const swarm = new HyperswarmClient({
-	// Specify the proxy server to connect to
-	proxy: 'ws://127.0.0.1:3472'
+  // Specify a list of proxy servers available to connect to
+	proxy: ['ws://127.0.0.1:3472']
 })
 
 // Same as with hyperswarm

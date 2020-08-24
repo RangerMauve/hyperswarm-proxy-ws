@@ -11,7 +11,7 @@ test('discover and make connections', async (t) => {
   const TEST_TOPIC = makeTopic('HYPERSWARM-PROXY-TEST' + Math.random())
   const TEST_MESSAGE = 'Hello World'
 
-  t.plan(4)
+  t.plan(5)
 
   try {
     const server = new Server()
@@ -27,7 +27,10 @@ test('discover and make connections', async (t) => {
     server.listen(port)
 
     const swarm = new Client({
-      proxy
+      proxy: [
+        'ws://localhost:4000', // wrong url
+        proxy,
+      ]
     })
 
     let connectionCount = 0
@@ -66,6 +69,8 @@ test('discover and make connections', async (t) => {
       })
 
       if (connectionCount++) return connection.end()
+
+      t.equal(swarm.proxy, proxy, 'should use the working proxy')
 
       t.deepEqual(info.peer.topic, TEST_TOPIC, 'got connection in client')
       connection.on('data', () => {
