@@ -70,7 +70,7 @@ test('discover and make connections', async (t) => {
 
       if (connectionCount++) return connection.end()
 
-      t.equal(swarm.proxy, proxy, 'should use the proxy working')
+      t.equal(swarm.proxy, proxy, 'should use the working proxy')
 
       t.deepEqual(info.peer.topic, TEST_TOPIC, 'got connection in client')
       connection.on('data', () => {
