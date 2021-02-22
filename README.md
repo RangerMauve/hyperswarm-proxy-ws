@@ -5,6 +5,8 @@ Proxy hyperswarm connections over websockets with auto-reconnect logic
 npm -s hyperswarm-proxy-ws
 ```
 
+Uses the [hyperswarm-proxy](https://github.com/RangerMauve/hyperswarm-proxy) module.
+
 ## Example
 
 ```js
